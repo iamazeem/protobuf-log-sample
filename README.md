@@ -1,14 +1,48 @@
 # protobuf-log-sample
 
-## Protocol Buffers Log Sample: File Read/Write [Ruby &amp; Python]
+This repo contains a sample log defintion ([`log.proto`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.proto)) in [Protocol Buffers](https://developers.google.com/protocol-buffers/) format and the read/write scripts in Ruby and Python.
 
-This repo contains a sample log defintion ([`log.proto`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.proto)) in [Protocol Buffers](https://developers.google.com/protocol-buffers/) and its read/write scripts in Ruby and Python.
+It's just a simple test of reading/writing protobuf messages with different language bindings.
+
+## Log Definition (`log.proto`)
+```
+syntax = "proto3";
+
+package service.logging;
+
+import "google/protobuf/timestamp.proto";
+
+message Log {
+    message Context {
+        google.protobuf.Timestamp timestamp = 1;
+        string host_or_ip = 2;
+        string service_name = 3;
+        string user = 4;
+    }
+
+    enum Level {
+        DEBUG = 0;
+        INFO = 1;
+        WARN = 2;
+        ERROR = 3;
+        FATAL = 4;
+    }
+
+    Context context = 1;
+    Level level = 2;
+    string message = 3;
+}
+```
 
 ## Scripts
 - Ruby ([`log.rb`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.rb))
 - Python ([`log.py`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.py))
 
-It's just a simple test of reading/writing protobuf messages with different language bindings.
+### Prerequisites
+
+- Protocol Buffers Compiler (`protoc`)
+- Ruby + [google-protobuf](https://github.com/ruby-protobuf/protobuf/wiki/Installation) gem
+- Python
 
 The generated files for Ruby and Python ([`log_pb.rb`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log_pb.rb) and [`log_pb2.py`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log_pb2.py)) are also included here.
 
@@ -17,13 +51,7 @@ However, they can be regenerated with `protoc` like this:
 $ protoc --ruby_out=. --python_out=. ./log.proto
 ```
 
-### Prerequisites
-
-- Protocol Buffers Compiler (`protoc`)
-- Ruby + [google-protobuf](https://github.com/ruby-protobuf/protobuf/wiki/Installation) gem
-- Python
-
-### Script Usage
+### How to run scripts?
 
 Both scripts offer the same functionality via command line options i.e.:
 
