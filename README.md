@@ -4,13 +4,17 @@
 
 This repo contains a sample log defintion ([`log.proto`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.proto)) in [Protocol Buffers](https://developers.google.com/protocol-buffers/) and its read/write scripts in Ruby and Python.
 
+## Scripts
+- Ruby ([`log.rb`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.rb))
+- Python ([`log.py`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log.py))
+
 It's just a simple test of reading/writing protobuf messages with different language bindings.
 
 The generated files for Ruby and Python ([`log_pb.rb`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log_pb.rb) and [`log_pb2.py`](https://github.com/iamAzeem/protobuf-log-sample/blob/master/log_pb2.py)) are also included here.
 
 However, they can be regenerated with `protoc` like this:
 ```
-protoc --ruby_out=. --python_out=. log.proto
+$ protoc --ruby_out=. --python_out=. ./log.proto
 ```
 
 ### Prerequisites
